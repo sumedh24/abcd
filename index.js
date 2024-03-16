@@ -24,8 +24,8 @@ app.get("/",(req, res)=>{
 app.get("/index1",(req, res)=>{
     res.sendFile(__dirname+"/index1.html");
     })
-    app.get("/script.js",(req,res)=>{
-    res.render("/script1");
+    app.get("/script1.js",(req,res)=>{
+    res.render("/script1.js");
     
     })
 
