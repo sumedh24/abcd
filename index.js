@@ -22,7 +22,11 @@ app.get("/",(req, res)=>{
      res.sendFile(__dirname+"/index.html");
     })
 app.get("/index1",(req, res)=>{
-         res.sendFile(__dirname+"/index1.html");
+    res.sendFile(__dirname+"/index1.html");
+    })
+    app.get("/script.js",(req,res)=>{
+    res.render("/script1");
+    
     })
 
 //Middleware for data validation
