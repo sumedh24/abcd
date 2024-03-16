@@ -11,8 +11,11 @@
             "src": "/(.*)","dest": "/"
             
             
-        },
-        {"src": "script1.js", "dest": "/script1.js"},
-        { "src": "style.css", "dest": "/style.css" }
-    ]
+        }
+    ],
+    "functions":{
+        "/index.js":{
+            "includeFiles":"script1.js"
+        }
+    }
 }
