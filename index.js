@@ -20,7 +20,7 @@ const User=mongoose.model("Users",userSchema);
 app.get("/",(req, res)=>{
      res.sendFile(__dirname+"/index.html");
     })
-app.get("/index1.html",(req, res)=>{
+app.get("/index1",(req, res)=>{
          res.sendFile(__dirname+"/index1.html");
     })
 
@@ -59,7 +59,7 @@ app.use(bodyParser.urlencoded({extended:true}));
                 Message:req.body.message, subject:req.body.subject,})
                 newUser.save();
 
-                res.redirect("/index1.html");
+                res.redirect("/index");
  }})})
  app.listen(3000,()=>{
      console.log("server is running ");
