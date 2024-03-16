@@ -19,15 +19,12 @@ const userSchema={
 const User=mongoose.model("Users",userSchema);
 
 app.get("/",(req, res)=>{
-     res.sendFile(__dirname+"/index.html");
+     res.sendFile(__dirname+"public/index.html");
     })
 app.get("/index1",(req, res)=>{
-    res.sendFile(__dirname+"/index1.html");
+    res.sendFile(__dirname+"public/index1.html");
     })
-    app.get("/script1.js",(req,res)=>{
-    res.render("/script1.js");
     
-    })
 
 //Middleware for data validation
 const validateFormData=(req, res, next)=>{
@@ -63,8 +60,8 @@ app.use(bodyParser.urlencoded({extended:true}));
                 phoneNumber:req.body.phoneNumber,
                 Message:req.body.message, subject:req.body.subject,})
                 newUser.save();
-
-                res.redirect("/index1");
+                
+                res.redirect("public/index1");
  }})})
  app.listen(3000,()=>{
      console.log("server is running ");
