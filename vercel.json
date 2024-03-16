@@ -12,10 +12,5 @@
             
             
         }
-    ],
-    "functions":{
-        "/index.js":{
-            "includeFiles":"/script1.js"
-        }
-    }
+    ]
 }
