@@ -1,11 +1,12 @@
+// Import required modules
 const express = require('express');
-const app= express();
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
-
+// Create Express app
+const app = express();
 app.use(express.static('public'));
 
-//connect to mongoose
+// Connect to MongoDB
 mongoose.connect('mongodb+srv://sumedhbhatkar80:mPqt9HvRshpHGa9r@Cluster0.eapj2k8.mongodb.net/PKTP?retryWrites=true&w=majority');
 
 //create dataschema
@@ -19,12 +20,15 @@ const userSchema={
 const User=mongoose.model("Users",userSchema);
 
 app.get("/",(req, res)=>{
-     res.sendFile(__dirname+"public/index.html");
+     res.sendFile(__dirname+"/index.html");
     })
 app.get("/index1",(req, res)=>{
-    res.sendFile(__dirname+"public/index1.html");
+    res.sendFile(__dirname+"/index1.html");
     })
+    app.get("/script1.js",(req,res)=>{
+    res.render("/script1.js");
     
+    })
 
 //Middleware for data validation
 const validateFormData=(req, res, next)=>{
@@ -38,12 +42,15 @@ const validateFormData=(req, res, next)=>{
         res.status(400).send(res.send('<script>alert("Enter correct phone number");window.location.href="/";</script>'));
     }}
 
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended:true}));
+// Route for serving index.html
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+});
 
-//route for submission
- app.post("/", validateFormData,(req,res)=>{
-     const phoneNumber= req.body.phoneNumber;
+// Route for serving index1.html
+app.get("/index1", (req, res) => {
+    res.sendFile(__dirname + "/index1.html");
+});
 
      //check if phone number already exists in the db  
  User.findOne({phoneNumber:phoneNumber})
@@ -60,8 +67,8 @@ app.use(bodyParser.urlencoded({extended:true}));
                 phoneNumber:req.body.phoneNumber,
                 Message:req.body.message, subject:req.body.subject,})
                 newUser.save();
-                
-                res.redirect("public/index1");
+
+                res.redirect("/index1");
  }})})
  app.listen(3000,()=>{
      console.log("server is running ");
