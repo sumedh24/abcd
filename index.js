@@ -3,6 +3,7 @@ const app= express();
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 
+app.use(express.static('public'));
 
 //connect to mongoose
 mongoose.connect('mongodb+srv://sumedhbhatkar80:mPqt9HvRshpHGa9r@Cluster0.eapj2k8.mongodb.net/PKTP?retryWrites=true&w=majority');
