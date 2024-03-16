@@ -20,7 +20,7 @@ const User=mongoose.model("Users",userSchema);
 app.get("/",(req, res)=>{
      res.sendFile(__dirname+"/index.html");
     })
-app.get("/index1",(req, res)=>{
+app.get("/index1.html",(req, res)=>{
          res.sendFile(__dirname+"/index1.html");
     })
 
