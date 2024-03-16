@@ -12,7 +12,7 @@
             
             
         },
-        {"src": "script1.js", "dest": "/public/script1.js"},
-        { "src": "style.css", "dest": "/public/style.css" }
+        {"src": "script1.js", "dest": "/script1.js"},
+        { "src": "style.css", "dest": "/style.css" }
     ]
 }
