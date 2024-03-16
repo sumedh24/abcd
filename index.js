@@ -18,10 +18,10 @@ const userSchema={
 const User=mongoose.model("Users",userSchema);
 
 app.get("/",(req, res)=>{
-     res.sendFile(__dirname+"/public/index.html");
+     res.sendFile(__dirname+"/index.html");
     })
 app.get("/index1",(req, res)=>{
-         res.sendFile(__dirname+"/public/index1.html");
+         res.sendFile(__dirname+"/index1.html");
     })
 
 //Middleware for data validation
@@ -59,7 +59,7 @@ app.use(bodyParser.urlencoded({extended:true}));
                 Message:req.body.message, subject:req.body.subject,})
                 newUser.save();
 
-                res.redirect("/index1");
+                res.redirect("/index1.html");
  }})})
  app.listen(3000,()=>{
      console.log("server is running ");
