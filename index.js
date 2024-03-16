@@ -1,12 +1,10 @@
-// Import required modules
 const express = require('express');
+const app= express();
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
-// Create Express app
-const app = express();
-app.use(express.static('public'));
 
-// Connect to MongoDB
+
+//connect to mongoose
 mongoose.connect('mongodb+srv://sumedhbhatkar80:mPqt9HvRshpHGa9r@Cluster0.eapj2k8.mongodb.net/PKTP?retryWrites=true&w=majority');
 
 //create dataschema
@@ -20,20 +18,16 @@ const userSchema={
 const User=mongoose.model("Users",userSchema);
 
 app.get("/",(req, res)=>{
-     res.sendFile(__dirname+"/index.html");
+     res.sendFile(__dirname+"/public/index.html");
     })
 app.get("/index1",(req, res)=>{
-    res.sendFile(__dirname+"/index1.html");
-    })
-    app.get("/script1.js",(req,res)=>{
-    res.render("/script1.js");
-    
+         res.sendFile(__dirname+"/public/index1.html");
     })
 
 //Middleware for data validation
 const validateFormData=(req, res, next)=>{
      const phoneNumber= req.body.phoneNumber;
- 
+
      //check if number has exactly 10 digits and no space
     if(/^\d{10}$/.test(phoneNumber)){
          next();
@@ -42,25 +36,22 @@ const validateFormData=(req, res, next)=>{
         res.status(400).send(res.send('<script>alert("Enter correct phone number");window.location.href="/";</script>'));
     }}
 
-// Route for serving index.html
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
-});
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({extended:true}));
 
-// Route for serving index1.html
-app.get("/index1", (req, res) => {
-    res.sendFile(__dirname + "/index1.html");
-});
+//route for submission
+ app.post("/", validateFormData,(req,res)=>{
+     const phoneNumber= req.body.phoneNumber;
 
-     //check if phone number already exists in the db  
+     //check if phone number already exists in the db  
  User.findOne({phoneNumber:phoneNumber})
   .then(existingFormData=>{
      if(existingFormData){
          res.send('<script>alert("phone number already exists. You cannot proceed.");window.location.href="/";</script>')
-          //res.sendFile(__dirname+"/failed.html")       
+          //res.sendFile(__dirname+"/failed.html")       
          }else{
             console.log(req)
-             //phone number doesnot exist, save the formdata to mongodb         
+             //phone number doesnot exist, save the formdata to mongodb         
                let newUser= new User({
                 name:req.body.name,
                 email:req.body.email,
