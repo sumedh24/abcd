@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PKTP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Add responsive CSS here */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .contact {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background:  linear-gradient(#16fcc7, #29fa19, #b6ed56, #f5b02d); 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 1, 1, 0.1);
+            box-sizing: border-box;
+        }
+
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: calc(50% - 10px);
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field input:focus {
+            border-color: #007bff;
+        }
+
+        .textarea-field {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .textarea-field textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            resize: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: border-color 0.3s ease;
+        }
+
+        .textarea-field textarea:focus {
+            border-color: #007bff;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+       
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .input-field {
+                width: 100%;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <section class="contact">
+        <h2>Make This HOLI Special</h2>
+        <!-- Form content -->
+        <form action="/" method="POST">
+            <div class="input-box">
+                <div class="input-field field">
+                    <input name="name" type="text" placeholder="Full name" id="name" class="item" autocomplete="off"
+                        required>
+                </div>
+                <div class="input-field field">
+                    <input type="text" name="phoneNumber" placeholder="Phone Number" id="phone" class="item"
+                        autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="textarea-field field">
+                <textarea name="message" id="message" cols="30" rows="10" placeholder="Your message" class="item"
+                    autocomplete="off"></textarea>
+            </div>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
